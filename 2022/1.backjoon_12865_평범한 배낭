@@ -1,0 +1,108 @@
+## [평범한 배낭](https://www.acmicpc.net/problem/12865)
+* 소요 시간 : 약 1시간 30분 (풀이 30분, 오류 1시간)
+>> 오류  : 런타임 에러(segfault)
+>> 오류 원인 : initDP 등 배열 자료구조를 잘못 이용한 것으로 추정. (최종 result 할당 및 출력 시 err) / 
+>> 해결 : 고정길이배열로 변경 후 
+
+###실패코드
+```cpp
+#define loop(i,a,b) for (int i = (a); i < (b); i++)
+
+#include <iostream>
+using namespace std;
+
+int**& initArr(int N) {
+	int** arr = new int*[N+1];
+	loop(i, 1, N+1) {
+		arr[i] = new int[2];
+		cin >> arr[i][0]>>arr[i][1];
+	}
+	return arr;
+}
+int**& initDP(int N,int K) {
+	int** dp = new int*[N+1];
+	loop(i, 0, N+1) {
+		dp[i] = new int[K+1];
+		loop(j, 0, K + 1) { dp[i][j] = 0; }
+	}
+	return dp;
+}
+
+int main(int argc, char** argv)
+{
+	int N;
+	int K;
+	cin >> N >> K;
+	int** stuffs = initArr(N); //[0] : W / [1] : V
+	int** dp = initDP(N+1, K+1);
+	loop(i, 1, N + 1) {
+		loop(j, 1, K + 1) {
+			dp[i][j] = dp[i-1][j];
+			if (stuffs[i][0] <= j) {
+				int pre = dp[i][j];
+				int next = dp[i - 1][j - stuffs[i][0]] + stuffs[i][1];
+				dp[i][j] = (pre > next) ? pre : next;
+			}
+		}
+	}
+
+	int result = dp[N][K];
+	cout << result <<endl;
+	return 0;
+}
+
+```
+
+
+###성공 코드
+```cpp
+#define loop(i,a,b) for (int i = (a); i < (b); i++)
+
+#include <iostream>
+using namespace std;
+
+int**& initArr(int N) {
+	int** arr = new int*[N+1];
+	arr[0] = new int[2]; arr[0][0] = 0; arr[0][1] = 0;
+	loop(i, 1, N+1) {
+		arr[i] = new int[2];
+		cin >> arr[i][0]>>arr[i][1];
+	}
+	return arr;
+}
+int**& initDP(int N,int K) {
+	int** dp = new int*[N+1];
+	loop(i, 0, N+1) {
+		dp[i] = new int[K+1];
+		loop(j, 0, K + 1) { dp[i][j] = 0; }
+	}
+	return dp;
+}
+
+int main(void)
+{
+	int N;
+	int K;
+	cin >> N >> K;
+  int w[100001]={0,};
+  int v[1001]={0,};
+  loop(i,1,N+1){cin>>w[i]>>v[i];}
+	int dp[105][100005]={0,};
+	loop(i, 1, N + 1) {
+		loop(j, 1, K + 1) {
+			if (w[i] <= j) {
+				int pre = dp[i-1][j];
+				int next = dp[i - 1][j - w[i]] + v[i];
+				dp[i][j] = (pre > next) ? pre : next;
+			}else{
+                dp[i][j]=dp[i-1][j];
+            }
+		}
+	}
+
+	int result = dp[N][K];
+	cout << result <<endl;
+	return 0;
+}
+
+```
