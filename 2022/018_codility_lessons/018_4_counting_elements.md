@@ -165,7 +165,7 @@ def solution(N, A):
 """
 ```
 
-### 2차 제출 코드
+### 2차 제출 코드(80%)
 ```python
 def solution(N, A):
     counter=[0]*N
