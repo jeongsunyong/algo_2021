@@ -57,13 +57,55 @@ N is an integer within the range [1..100,000];
 
 
 ## [5.2 CountDiv](https://app.codility.com/programmers/lessons/5-prefix_sums/count_div/)
-* 소요 시간 : 10분
+* 소요 시간 : 20분
 ### 성공 코드
 ```python
+def solution(A, B, K):
+    first_mod_zero=0
+    cnt=0
+    for i in range(A,B+1):
+        if i % K == 0 :
+            first_mod_zero=i
+            cnt+=1
+            break
+    cnt+=int((B-first_mod_zero)/K)
+    if A==B and A%K!=0:
+        cnt=0
+    return cnt
+
+"""
+    * GOAL : a,b 범위에서 k로 나누어 떨어지는 수 리턴하기
+        return i => { i | A ≤ i ≤ B, i mod K = 0 }
+
+    * A and B are integers within the range [0..2,000,000,000];
+    * K is an integer within the range [1..2,000,000,000];
+A ≤ B.
+"""
 ```
 --------------------------------------------------------------------
 ### 2.6 comment    
 
+#### case - Correctness tests   
+> 
+    (1) simple
+        * A = 11, B = 345, K = 17
+    (2) minimal     
+        * A = B in {0,1}, K = 11      
+    (3) extreme_ifempty(A==B)        
+        * A = 10, B = 10, K in {5,7,20}    
+    (4) extreme_endpoints
+        * verify handling of range endpoints, multiple runs
+
+#### case - Performance tests     
+>
+    (5) big_values        
+        * A, B, K in {1,MAXINT}    
+
+### Analysis - time complexity
+
+>
+  Detected time complexity:
+  O(1)
 
 
 
