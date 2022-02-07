@@ -105,27 +105,27 @@ def solution(S, P, Q):
 --------------------------------------------------------------------
 ### 2.7 comment    
 
-1차 제출 실패: timeout
-(Detected time complexity:O(N * M))
-▶extreme_sinlge
-single character string✔OK
-▶extreme_double
-double character string✔OK
-▶simple
-simple tests✔OK
-▶small_length_string
-small length simple string✔OK
-▶small_random
-small random string, length = ~300✔OK
-expand allPerformance tests
-▶almost_all_same_letters
-GGGGGG..??..GGGGGG..??..GGGGGG✘TIMEOUT ERROR
-Killed. Hard limit reached: 6.000 sec.
-▶large_random
-large random string, length✘TIMEOUT ERROR
-Killed. Hard limit reached: 6.000 sec.
-▶extreme_large
-all max ranges✔OK
+1차 제출 실패: timeout    
+(Detected time complexity:O(N * M))    
+▶extreme_sinlge     
+single character string✔OK    
+▶extreme_double   
+double character string✔OK    
+▶simple     
+simple tests✔OK    
+▶small_length_string   
+small length simple string✔OK     
+▶small_random    
+small random string, length = ~300✔OK    
+expand allPerformance tests   
+▶almost_all_same_letters     
+GGGGGG..??..GGGGGG..??..GGGGGG✘TIMEOUT ERROR    
+Killed. Hard limit reached: 6.000 sec.   
+▶large_random     
+large random string, length✘TIMEOUT ERROR    
+Killed. Hard limit reached: 6.000 sec.    
+▶extreme_large    
+all max ranges✔OK    
 
 1차 풀이에서는 시간복잡도를 줄이기 위해 전체 문자열을 검사하지 않고 min값을 찾을 수 있는 방법을 고민했고,    
 각 impact factor들의 counter에 누적 개수를 저장, 갱신하는 방법을 선택하였다.    
@@ -155,14 +155,14 @@ all max ranges✔OK
 결론적으로는 시간초과로 fail.    
 
 성공코드의경우 구글링을 참고해 풀이하였으며    
-중요한 learned lessons : python의 in연산자가 O(1)시간복잡도를 가진다★     
-내부적으로 해시를 사용하기 때문에 O(1)로 접근가능하고, 해시충돌로 인한 시간복잡도 최대값은O(N).
-1차 풀이때는 내부를 그 때 그 때 substr을 검사한다는 접근 자체를 배제했기 때문에 in연산자를 쓸 생각을 아예 안했는데,
-각 query마다 substr에서 4개의 문자(ACGT) 여부를 검사, 존재하는 가장 작은 문자의 숫자값을 저장하는 것이 해법이었다.
-python 언어 이해도에 대한 반성.
-현재 문법을 사용할 수 있을 정도로 익힌 수준이고
-append,delete,sort 등 자료구조에서 주로 접하는 메서드의 시간복잡도 뿐만 아니라 in연산같이 아무 의심 없이 쓰던 기능에 대한 시간복잡도 또한 고려사항이라는 것 자체를 깨달았다. 
-시간복잡도, 내부구현에대한 지식이 있어야 시간복잡도,공간복잡도 제한이 있는 문제에 적합한 연산자, 메서드(기능)을 사용할 수 있다.
+중요한 learned lessons : python의 in연산자가 O(1)시간복잡도를 가진다★      
+내부적으로 해시를 사용하기 때문에 O(1)로 접근가능하고, 해시충돌로 인한 시간복잡도 최대값은O(N).    
+1차 풀이때는 내부를 그 때 그 때 substr을 검사한다는 접근 자체를 배제했기 때문에 in연산자를 쓸 생각을 아예 안했는데,     
+각 query마다 substr에서 4개의 문자(ACGT) 여부를 검사, 존재하는 가장 작은 문자의 숫자값을 저장하는 것이 해법이었다.     
+python 언어 이해도에 대한 반성.    
+현재 문법을 사용할 수 있을 정도로 익힌 수준이고    
+append,delete,sort 등 자료구조에서 주로 접하는 메서드의 시간복잡도 뿐만 아니라 in연산같이 아무 의심 없이 쓰던 기능에 대한 시간복잡도 또한 고려사항이라는 것 자체를 깨달았다.     
+시간복잡도, 내부구현에대한 지식이 있어야 시간복잡도,공간복잡도 제한이 있는 문제에 적합한 연산자, 메서드(기능)을 사용할 수 있다.    
 
 ### Analysis - time complexity
 
@@ -172,12 +172,69 @@ append,delete,sort 등 자료구조에서 주로 접하는 메서드의 시간�
 
 
 ## [5.4 MinAvgTwoSlice](https://app.codility.com/programmers/lessons/5-prefix_sums/min_avg_two_slice/)
-* 소요 시간 : 10분
+* 소요 시간 : 1시간
 ### 성공 코드
 ```python
+def solution(A):
+    min_avg=(A[0]+A[1])/2.
+    min_start=0
+    
+    for i in range(2,len(A)): 
+        if (A[i]+A[i-1]+A[i-2])/3. < min_avg:
+            min_avg=(A[i]+A[i-1]+A[i-2])/3.
+            min_start=i-2
+        if (A[i]+A[i-1])/2. < min_avg:
+            min_avg=(A[i]+A[i-1])/2.
+            min_start=i-1
+    return min_start
+
+"""
+    goal : starting position of minimal average(중복시 젤작은수)
+    A: non-empty
+        size N
+    slice of array A : 
+        (P,Q) 0<=P<Q<N
+
+    N is an integer within the range [2..100,000];
+    each element of array A is an integer within the range [-10,000..10,000].
+"""
 ```
 --------------------------------------------------------------------
-### 2.6 comment    
+### 2.7 comment    
+
+구글링참고.
+최초풀이는 
+```python
+def solution(A):
+    min_avg=(A[0]+A[1])/2.
+    min_start=0
+    ac_sum=(A[0]+A[1])
+    ac_cnt=2
+    
+    for i in range(2,len(A)): 
+        if (ac_sum+A[i])/(ac_cnt+1) < min_avg:
+            ac_sum+=A[i]
+            ac_cnt+=1
+            min_avg=ac_sum/ac_cnt
+        if (ac_sum-A[min_start])/(ac_cnt-1) < min_avg and ac_cnt-1 > 1:
+            ac_sum-=A[min_start]
+            ac_cnt-=1
+            min_avg=ac_sum/ac_cnt
+            min_start-=1
+    return min_start
+```
+이었으나 실패, O(N^2)이하 풀이를 떠올리기엔 시간이 너무 많이 걸릴 것 같아 구글링 참고하여 풀이함.
+참고)부분합[https://cheolhojung.github.io/posts/algorithm/Codility-MinAvgTwoSlice.html]
+>
+    a <= b일 때, a와 b의 평균은 a 이상이 된다. (a = b 일 때, a와 b의 평균은 a, 즉 두 수가 같은 경우는 a 혹은 b가 된다)
+    마찬가지로, (a + b) <= (c + d)일 때, (a, b)와 (c, d)의 평균은 (a + b) 이상이 된다.
+    결국, 원소가 4개(a, b, c, d)인 그룹은 (a, b)와 (c, d)를 나누었을 때, 각각의 평균의 작은 값 이상이 된다.
+    2개인 그룹이 작은 값이 되므로 4개의 그룹은 고려할 필요가 없어진다.
+    예외로 원소가 3개인 그룹에서 2개인 그룹과 1개인 그룹의 경우를 확인해야 하지만, 문제에서 주어진 조건에 의하면 그룹의 원소는 최소 2개 이상이므로 2개와 3개인 그룹만 비교한다.
+
+
+
+```
 
 
 #
