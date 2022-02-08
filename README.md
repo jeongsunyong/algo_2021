@@ -20,11 +20,7 @@
   - 15.동전1(02/02)
   - 16.파도반 수열(02/03)
   - 17.동전2(02/04)
-  - 18.iterations[BinaryGap],
-    array[CyclicRotation,OddOccurencesInArray],
-    timeComplexity[FrogJump,PermMissingElem,TapeEquilibrium], 
-    countingElements[FrogRiverOne,PermCheck,MaxCounters,MissingInteger] (02/05)
-    
+  - 18.iterations[BinaryGap], array[CyclicRotation,OddOccurencesInArray], timeComplexity[FrogJump,PermMissingElem,TapeEquilibrium], countingElements[FrogRiverOne,PermCheck,MaxCounters,MissingInteger] (02/05)
   - 19. prefixSums[PassingCars,CountDiv] (02/06)
   - 20. prefixSums[GenomicRangeQuery,MinAvgTwoSlice] (02/07)
   - 21. sorting[Distinct,MaxProductOfThree] (02/08)
