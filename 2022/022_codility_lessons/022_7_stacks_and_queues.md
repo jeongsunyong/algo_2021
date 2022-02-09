@@ -166,23 +166,82 @@ def solution(S):
     
 ----------------------------------------------
 ## [7.4 StoneWall](https://app.codility.com/programmers/lessons/7-stacks_and_queues/stone_wall/)
-* 소요 시간 :
+* 소요 시간 : 30분+30분
 
 ### 성공 코드
 ```python
+def solution(H):
+    block = 0
+    stack=[]
+    for h in H:
+        if not stack:
+            stack.append(h)
+            continue
+        if h==stack[-1]:
+            continue
+        elif h > stack[-1]:
+            stack.append(h)
+        while h < stack[-1]:
+            stack.pop()
+            block+=1
+            if not stack : break
+        if stack:
+            if stack[-1]==h:
+                continue
+        stack.append(h)
+    while stack : 
+        stack.pop()
+        block+=1
+    
+    return block
 
+"""
+GOAL : 벽을 쌓는 데 필요한 최소 직사각형 block 개수 구하기
+    직사각형의 크기는 자유롭게, 배열에 해당하는 높이를 맞춰줘야함.
+    H : 벽의 높이 배열(양의정수)
+        size N (meter of walls)
+    H[I] : I ~ I+1 wall의 높이
+        (H[0] : left end / H[N-1] : right end
+        if 0 1 2 3 ( N = 4)
+        leftend(0) 1~2(1) / 2~3(2) / rightend(3))
+
+    N is an integer within the range [1..100,000];
+    each element of array H is an integer within the range [1..1,000,000,000].
+
+    최대한 큰 크기의 직사각형 사용하기 ?
+    공통 높이 찾기
+    가장 작은 개수라는 것을 보장할 수 있는 방법?
+
+    stack : 자신보다 작은 직사각형이 나오면 end
+    ex
+     8 8 -> (8 push x )1개의 블럭으로 가능 (0)
+     8 5 -> 감소 (5 push 8 pop) 1개의 블럭으로 불가능. (1)
+     5 7 -> 증가(7 push) 1개의 블럭 위에 추가로 1개의 블럭 (1)
+     7 9 -> 증가(9 push) 1개의 블럭 위에 추가로 1개의 블럭 (1)
+     9 8 -> 감소 (8 push 9 pop) -> 8 vs 7 : 8이 더 크므로 1개의 블럭 추가.(2)
+     8 7 -> 감소 ( 8 pop) -> 7 vs 7 : 동일한 블럭 존재하므로 묶음(7push x) (3)
+     7 4 -> 감소 (4 push 7 pop 5pop) -> 5 vs 4 : 더 작으므로 stack ->모두pop (5)
+     4 7 -> 증가 (8 push)
+     end
+     -> stack pop pop(7 , 4)-> (7)
+"""
 
 ```
 
 --------------------------------------------------------------------
 ### 2.9 comment    
+  lessons 주제가 stack & queue인데 3개 문제 전부 stack으로 풀어서    
+  queue로 풀어야하는건가 접근하려했는데    
+  생각하다보니깐 스택이 적합한 것 같아 스택으로 풀이.    
+  풀고 나서 서치해봤는데 queue로 푼 사람은 없는 것 같고 다들 비슷하게 queue문제가 안나온것에 대한 의문을 가짐ㅎㅎ..    
+  lessons 주제가 있어 스택이나 큐라는 접근방법이 힌트가 되는데,    
+  실제 코테 문제로 나오면 생각을 못 할수도 있을 것 같다    
   
- 
 
 ### Analysis - time complexity
 
 >
-  Detected time complexity:
+  Detected time complexity: O(N)
   
 
     
