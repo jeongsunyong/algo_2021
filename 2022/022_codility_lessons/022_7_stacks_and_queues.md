@@ -1,5 +1,5 @@
 
-# Lessons6. StacksAndQueues
+# Lessons7. StacksAndQueues
 ## [7.1 Brackets](https://app.codility.com/programmers/lessons/7-stacks_and_queues/brackets/)
 * 소요 시간 : 15분
 
