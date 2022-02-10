@@ -1,5 +1,5 @@
 
-# Lessons7. StacksAndQueues
+# Lessons8. Leader
 ## [8.1 Dominator](https://app.codility.com/programmers/lessons/8-leader/dominator/)
 * 소요 시간 : 20분
 
@@ -63,6 +63,25 @@ loop마다 count를해줬는데, 배열 전체 탐색하는 방식이기 때문�
 
     
 -----------------------------------------------
+## [8.2 EquiLeader](https://app.codility.com/programmers/lessons/8-leader/equi_leader/)
+* 소요 시간 : 
+
+### 성공 코드
+```python
+
+
+```
+
+--------------------------------------------------------------------
+### 2.10 comment    
+
+
+
+### Analysis - time complexity
+
+>
+  Detected time complexity:
+  
 
     
 ----------------------------------------------
