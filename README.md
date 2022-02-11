@@ -26,6 +26,7 @@
   - 21.sorting[Distinct,MaxProductOfThree,Triangle] (02/08)
   - 22.sorting[NumberOfDiscIntersections], stacksAndQueues[Brackets,Fish,Nesting,StoneWall] (02/09)
   - 23.leaderg[Dominator] (02/10)
+  - 24.leaderg[EquiLeader], MaxSlice[MaxProfit] (02/11)
 --------------------------------------------------------
 # algo_2021
 
