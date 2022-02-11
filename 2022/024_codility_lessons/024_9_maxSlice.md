@@ -1,7 +1,7 @@
 
 # Lessons9. MaxSlice
 ## [9.1 MaxProfit](https://app.codility.com/programmers/lessons/9-maximum_slice_problem/max_profit/)
-* 소요 시간 : 
+* 소요 시간 : 24분
 
 ### 성공 코드
 ```python
