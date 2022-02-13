@@ -253,6 +253,112 @@ input size가 N is an integer within the range [1..400,000]; 였어서(100 * 100
     
 ----------------------------------------------
 ## [10.4 Peaks](https://app.codility.com/programmers/lessons/10-prime_and_composite_numbers/peaks/)
+* 소요 시간 : 1시간30분
+
+### 성공 코드
+```python
+def solution(A):
+    peaks=[]
+    for i in range(1,len(A)-1):
+        if A[i-1] < A[i] and A[i] > A[i+1]:
+            peaks.append(i)
+
+    N=len(A)
+    if len(peaks) < 1:
+        return 0
+    max_cnt=1
+
+    for block_cnt in range(2,N):
+        if N%block_cnt != 0:
+            continue
+    
+        in_block_flag=0
+        block_size=int(N/block_cnt)
+        block_start=0
+        block_end=block_size-1
+        cnt=0
+        for peak in peaks:
+            if peak >= block_end:
+                if in_block_flag==0 and peak!=block_end:
+                    break
+                elif in_block_flag==1 or peak==block_end:
+                    if peak==block_end:
+                        in_block_flag=0
+                    block_start+=block_size
+                    block_end+=block_size
+                    cnt+=1
+                    if peak==block_end:
+                        in_block_flag=0
+                        block_start+=block_size
+                        block_end+=block_size
+                        cnt+=1
+                    
+            elif peak >=block_start and peak < block_end:
+                in_block_flag=1
+        if in_block_flag==1:
+            cnt+=1
+        if cnt == block_cnt :
+            max_cnt=block_cnt
+    return max_cnt
+
+"""
+    goal: A가 peak를 포함해 분리될 수 있는 최대개수.
+    A: 정수배열,size N, non-empty
+    peak :  0 < P < N - 1,  A[P - 1] < A[P] and A[P] > A[P + 1].
+        (양옆보다 큰 수)
+
+    분리조건: same number elements
+            peak포함(블럭내에서 peak의 양옆 포함되어야하는것은 아님)
+
+    N is an integer within the range [1..100,000];
+    each element of array A is an integer within the range [0..1,000,000,000].
+"""
+```
+
+--------------------------------------------------------------------
+### 2.13 comment   
+flag문제처럼 flag리스트를 따로 빼서 순회.     
+block_cnt 개수로 loop를 돌아서 체크, 최대 카운트에 분리가능한경우를 return.    
+디버깅of디버깅으로 풀어서    
+잘 푼건 아닌 것 같다.     
+시간복잡도도 O(N * log(log(N))으로 정답이 아닌듯함.      
+정답코드     
+```python
+def solution(A):
+  
+    peaks = []
+    
+    for i in range(1, len(A)-1):
+        if A[i] > A[i-1] and A[i] > A[i+1]:
+            peaks.append(i)
+            
+    for i in range(len(peaks),0,-1):
+        if len(A) % i == 0:
+            block_size = len(A)//i
+            block = [False]*i
+            block_cnt = 0
+            for j in range(len(peaks)):
+                idx = peaks[j] // block_size
+                if block[idx] == False:
+                    block[idx] = True
+                    block_cnt += 1
+            
+            if block_cnt == i:
+                return block_cnt
+        
+    return 0
+```
+구글링에 검색했을 때 나온 풀이.     
+peak size * peak size 내에 해결이 가능하다.     
+크게 다르진 않은 것 같기도 하다.      
+제출해서 맞은 풀이에서 1번째 루프를 range(len(peak))로 변경했을 시 시간복잡도 변화 x    
+구글에서 가져온 코드도 N * log(log(N))로 정상으로 풀은 듯   
+
+### Analysis - time complexity
+
+>
+  Detected time complexity:
+  O(N * log(log(N)))      
 
 
 
