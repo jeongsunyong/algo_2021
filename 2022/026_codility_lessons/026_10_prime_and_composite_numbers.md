@@ -130,21 +130,125 @@ def solution(N):
     
 ----------------------------------------------
 ## [10.3 Flags](https://app.codility.com/programmers/lessons/10-prime_and_composite_numbers/flags/)
-* 소요 시간 : 20분
+* 소요 시간 : 2
 
 ### 성공 코드
 ```python
+import math
+def solution(A):
+    peaks=[]
+    for i in range(1,len(A)-1):
+        if A[i-1] < A[i] and A[i] > A[i+1]:
+            peaks.append(i)
 
+    max_cnt=0
+    for num_flag in range(1,math.ceil(math.sqrt(len(A)))+1):
+        cnt=0
+        pre=-num_flag
+        for idx in peaks:
+            if idx-pre>=num_flag:
+                pre=idx
+                cnt+=1
+                if cnt>= num_flag:
+                    break
+        if max_cnt<cnt:
+            max_cnt=cnt
+
+    return max_cnt
+"""
+    GOAL : flag 최대 개수.
+    A: 숫자배열
+        size N, non-empty
+    peak : 0<P<N-1인 인덱스P에대해, A[P - 1] < A[P] > A[P + 1]
+        양옆보다 큰 수.
+    flag 꽂기 rule:
+        (1) peak에 꽂을 수 있다.
+        (2) K번째 flag : 두 flag간 거리는 K보다 크거나같아야한다.
+        * P와 Q인덱스간 거리 : abs(P-Q)
+    
+    N is an integer within the range [1..400,000];
+each element of array A is an integer within the range [0..1,000,000,000].
+
+    arr N개
+        -> 최대 flags : sqrt(N)개 :
+            because : if 5개의 flag, 5칸씩 5개의 flag 떨어저있어야하므로. 5*5개의 arr size필요, 0, N-1는 peak불가하므로 N-1개가 최대일듯.
+
+"""
 ```
 
 --------------------------------------------------------------------
-### 2.13 comment    
+### 2.13 comment   
+실패 코드(1차제출)
+```python
+def solution(A):
+    peaks=[]
+    for i in range(1,len(A)-1):
+        if A[i-1] < A[i] and A[i] > A[i+1]:
+            peaks.append(i)
+
+    max_cnt=0
+    for num_flag in range(1,len(peaks)+1):
+        cnt=0
+        pre=0
+        for idx in peaks:
+            if idx-pre>=num_flag:
+                pre=idx
+                cnt+=1
+                if cnt> num_flag:
+                    break
+        if max_cnt<cnt:
+            max_cnt=cnt
+
+    return max_cnt
+```
+peaks 저장 후 -> peak들만 순회하며 이전인덱스와 거리 차이가 num_flag이상일 때 cnt증가, 갱신해주며 마지막에는 가장 큰 cnt값(flag)를 반환.
+timeout err
+
+실패코드(2차제출)
+```python
+import math
+
+def solution(A):
+    max_flag=0
+    for distance in range(1,math.ceil(math.sqrt(len(A)))):
+        idx=1
+        flag=0
+        pre=-distance
+        while idx < len(A)-1:
+            if A[idx-1] < A[idx] and A[idx] > A[idx+1] and idx-pre >= distance:
+                flag+=1
+                pre=idx
+                idx+=distance
+            else:
+                idx+=1
+        if flag>=distance:
+            max_flag=flag    
+
+    return max_flag
+
+```
+loop1) distance 개수를 변경하면서
+loop2) 해당 distance만큼 띄워진 flag들 체크.. -> flag가 기준 distance만큼 꽂을 수 있다면 해당 flags개수로 갱신.
+
+위 케이스 둘 다 timeout err가 떠서
+첫번째 제출의 num_flag를 sqrt(N)으로 변경했을 때,
+1case 빼고 통과되었다(timeout 해결)
+
+test_case > 
+    packed_peaks
+    possible to set floor(sqrt(N))+1 flags✘WRONG ANSWER
+해당 케이스에서 걸렸었는데, ex ) 25면 맨첫번째, 마지막 인덱스는 peak가 될 수 없으므로  최대 4개까지 flag를 꽂을 수 있다고 생각했었으나 5개의 peak( 2..7..12..17..22 )까지 가능.(5개의 distance는 N-1(4)번만나오면 되기 때문에.
+
+코딜리티가 초 제한이 없어서 O(N)으로 풀어야하는지 O(log(N)), O(sqrt(N))등 시간복잡도 제한을 파악하기 어려워서 어떤 방법으로 접근해서 시간복잡도를 줄여나가야하는지 결정하는게 조금 어려웠던 것 같다.
+실제 1번풀이가 접근이맞았었지만 timeout후 다른방법을 시도해봤던건 확신이없어서 였는데
+input size가 N is an integer within the range [1..400,000]; 였어서(100 * 100) (* 4) 대충 O(N)까지는 허용되는 듯.
+
 
 ### Analysis - time complexity
 
 >
   Detected time complexity:
-  O(sqrt(N))  
+  O((N))  
 
     
 ----------------------------------------------
