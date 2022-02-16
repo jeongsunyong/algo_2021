@@ -29,8 +29,9 @@
   - 24.leaderg[EquiLeader], MaxSlice[MaxProfit] (02/11)
   - 25.MaxSlice[MaxSliceSum,MaxDoubleSliceSum] (02/12)
   - 26.Prime and composite numbers[CountFactors,MinPerimeterRectangle, Flags,Peaks] (02/13)
-  - 27.Sieve of Eratosthenes[CountNonDivisible] (02/14)
-  - 28.Sieve of EratosthenesCountSemiprimes] (02/15)
+  - 27.SieveOfEratosthenes[CountNonDivisible] (02/14)
+  - 28.SieveOfEratosthenes[CountSemiprimes] (02/15)
+  - 29.EuclideanAlgorithm[ChocolatesByNumbers] (02/16)
 
 --------------------------------------------------------
 # algo_2021
