@@ -32,6 +32,10 @@
   - 27.SieveOfEratosthenes[CountNonDivisible] (02/14)
   - 28.SieveOfEratosthenes[CountSemiprimes] (02/15)
   - 29.EuclideanAlgorithm[ChocolatesByNumbers] (02/16)
+  - 30.EuclideanAlgorithm[CommonPrimeDivisors] (02/17)
+  - 31.이미지프로세싱 (02/18)
+  - 32.통계 테스트시점 예측 (02/19)
+  - 33.GINI야 도와줘 (02/20)
 
 --------------------------------------------------------
 # algo_2021
