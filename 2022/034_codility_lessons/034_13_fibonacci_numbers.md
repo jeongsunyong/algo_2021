@@ -2,10 +2,7 @@
 ## [13.1 FibFrog](https://app.codility.com/programmers/lessons/13-fibonacci_numbers/fib_frog/)
 * 소요 시간 : 3시간
 
-### 성공 코드
-```python
 
-```
 
 --------------------------------------------------------------------
 ### 2.21 comment    
@@ -125,6 +122,44 @@ indx:    0 1 2 3 4 5 6 7
 -1->2, 2->7 7->8(3) wrong    
 최소 보장되지 X, 잘못된 접근    
 
+
+```python
+import sys
+sys.setrecursionlimit(10**7)
+def solution(A):
+    N=len(A)
+    fibs=[1,1]
+    fib_flags=[0]*(N+3)
+    fib_flags[1]=1
+    for i in range(0,N+2):
+        fib=fibs[i]+fibs[i+1]
+        if fib > N+2:
+            break
+        fibs.append(fib)
+        fib_flags[fib]=1
+
+    leaves=[idx for idx,flag in enumerate(A) if flag==1]
+    leaves.append(N)
+    len_leaves=len(leaves)
+    def dfs(idx,pos,cnt):#idx : 현재 leaf idx
+        min_cnt=100001
+        for l in range(idx,len_leaves):#0~len_leaves
+            leaf=leaves[l]
+            if fib_flags[leaf-pos]==1: # 이동가능
+                if leaf==N:
+                    return cnt+1
+                else:
+                    min_cnt=min(min_cnt,dfs(l+1,leaves[l],cnt+1))
+            
+        return min_cnt
+
+    min_cnt=dfs(0,-1,0)
+    if min_cnt==100001:
+        min_cnt=-1
+    return min_cnt
+```
+2차풀이. 단순화해서 모든 케이스 조사 했을 시 timeout   
+(실패)    
 
 
     
