@@ -1,9 +1,9 @@
 # Lessons13.Fibonacci numbers
-## [13.2 Ladder](https://app.codility.com/programmers/lessons/13-fibonacci_numbers/fib_frog/)
+## [13.2 Ladder](https://app.codility.com/programmers/lessons/13-fibonacci_numbers/ladder/)
 * 소요 시간 : 1시간 30분
 
 ### 성공 코드
-```
+```python
 def solution(A, B):
     L=max(A)+1
     fibs=[[0,1,2]]
