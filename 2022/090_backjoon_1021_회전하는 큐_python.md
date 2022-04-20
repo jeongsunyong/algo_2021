@@ -23,9 +23,9 @@ if __name__ == '__main__':
         #operation 판정
         if idx==q[front] :
             operation=1
-        elif (abs(q.index(idx)-front)<= len_q/2 and front<q.index(idx)) or (abs(q.index(idx)-front)>=len_q/2 and front>q.index(idx)): # <= (len_q-front)+q.index(idx)-1: # 1 2 3 4 5, q[front]==1, idx=4 vs idx 2 -> 2-1 = 1, 4-1=1 / q[front]=5 -> 4-5=-1 2-5=-3 -> abs(idx-q[front]) >= len_q//2
+        elif (abs(q.index(idx)-front)<= len_q/2 and front<q.index(idx)) or (abs(q.index(idx)-front)>=len_q/2 and front>q.index(idx)): 
             operation=2
-        else:#i abs(q.index(idx)-front) > (len_q-front)+q.index(idx)-1:
+        else:
             operation=3
 
         if operation==1:
