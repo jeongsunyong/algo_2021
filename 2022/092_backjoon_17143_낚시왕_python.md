@@ -1,7 +1,7 @@
 ## [낚시왕](https://www.acmicpc.net/problem/17143)
 * 소요 시간 :  4시간 
 
-###성공 코드
+### 성공 코드
 ```python
 import sys
 
