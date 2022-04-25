@@ -1,4 +1,4 @@
-## [낚시왕](https://www.acmicpc.net/problem/17142)
+## [연구소3](https://www.acmicpc.net/problem/17142)
 * 소요 시간 :  4시간 
 
 ### 성공 코드
