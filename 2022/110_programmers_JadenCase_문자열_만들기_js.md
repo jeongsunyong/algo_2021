@@ -1,5 +1,4 @@
-## [JadenCase 문자열 만들기
-](https://programmers.co.kr/learn/courses/30/lessons/12951?language=javascript)
+## [JadenCase 문자열 만들기](https://programmers.co.kr/learn/courses/30/lessons/12951?language=javascript)
 * 소요 시간 : 약 20분
 
 ### 성공코드
