@@ -1,5 +1,4 @@
-## [가장 큰 정사각형 만들기
-](https://programmers.co.kr/learn/courses/30/lessons/12905?language=javascript)
+## [가장 큰 정사각형 만들기](https://programmers.co.kr/learn/courses/30/lessons/12905?language=javascript)
 * 소요 시간 : 약 50분
 
 ### 성공코드(구글링)
