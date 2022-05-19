@@ -1,4 +1,4 @@
-## [메뉴 리뉴얼](https://programmers.co.kr/learn/courses/30/lessons/68645#)
+## [삼각 달팽이](https://programmers.co.kr/learn/courses/30/lessons/68645#)
 * 소요 시간 : 약 1시간
 
 ### 성공코드
