@@ -1,4 +1,4 @@
-## [수식 최대화](https://programmers.co.kr/learn/courses/30/lessons/86051?language=javascript)
+## [없는 숫자 더하기](https://programmers.co.kr/learn/courses/30/lessons/86051?language=javascript)
 * 소요 시간 : 약 10분
 
 ### 성공코드
